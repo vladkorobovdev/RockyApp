@@ -1,0 +1,19 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "sweetalert2@11.7.2",
+      "destination": "wwwroot/lib/sweetalert2",
+      "files": [
+        "sweetalert2.all.min.js",
+        "sweetalert2.all.js"
+      ]
+    },
+
+    {
+      "library": "summernote@0.8.20",
+      "destination": "wwwroot/lib/summernote"
+    }
+  ]
+}

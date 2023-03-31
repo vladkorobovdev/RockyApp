@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\lib\sweetalert2\sweetalert2.all.min.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Mailjet.Api" Version="3.0.0" />
+    <PackageReference Include="MailKit" Version="3.6.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.14" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.14" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.14" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.14">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.12" />
+    <PackageReference Include="Microsoft.Web.LibraryManager.Build" Version="2.1.175" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\img\product\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Rocky_DataAccess\Rocky_DataAccess.csproj" />
+    <ProjectReference Include="..\Rocky_Models\Rocky_Models.csproj" />
+    <ProjectReference Include="..\Rocky_Utility\Rocky_Utility.csproj" />
+  </ItemGroup>
+
+</Project>
