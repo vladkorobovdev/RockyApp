@@ -14,6 +14,11 @@
     {
       "library": "summernote@0.8.20",
       "destination": "wwwroot/lib/summernote"
+    },
+
+    {
+      "library": "datatables@1.10.21",
+      "destination": "wwwroot/lib/datatables/"
     }
   ]
 }
