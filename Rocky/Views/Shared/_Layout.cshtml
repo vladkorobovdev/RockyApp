@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="~/lib/datatables/css/dataTables.uikit.min.css"/>
     <link rel="stylesheet" href="~/lib/datatables/css/jquery.dataTables.min.css"/>
     <link rel="stylesheet" href="~/lib/datatables/css/jquery.dataTables_themeroller.min.css"/>
+    <link rel="stylesheet" href="~/lib/toastr/toastr.min.css" />
 
 </head>
 <body>
@@ -115,6 +116,7 @@
     </header>
     <div class="container">
         <main role="main" class="pb-3">
+            <partial name="_Notifications" />
             @RenderBody()
         </main>
     </div>
@@ -145,6 +147,7 @@
     <script src="~/lib/datatables/js/dataTables.semanticui.min.js"></script>
     <script src="~/lib/datatables/js/dataTables.uikit.min.js"></script>
     <script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="~/lib/toastr/toastr.min.js"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>
