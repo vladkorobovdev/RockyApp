@@ -5,6 +5,11 @@ namespace Rocky_Models
 {
     public class Product
     {
+        public Product()
+        {
+            TempSqFt = 1;
+        }
+
         [Key]
         public int Id { get; set; }
 
@@ -28,5 +33,9 @@ namespace Rocky_Models
 
         [ForeignKey("ApplicationTypeId")]
         public virtual ApplicationType ApplicationType { get; set; }
+
+        [NotMapped] // Показывает БД, что это свойство не нужно сохранять в базу данных, оно временное и нужно для хранения в текушей сессии
+        [Range(1, 10000)]
+        public int TempSqFt { get; set; }
     }
 }

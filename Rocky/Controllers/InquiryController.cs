@@ -73,6 +73,8 @@ namespace Rocky.Controllers
             _inqHRepo.Remove(inquiryHeader);
             _inqHRepo.Save();
 
+            TempData[WC.Success] = "Action completed successfully";
+
             return RedirectToAction(nameof(Index));
         }
 

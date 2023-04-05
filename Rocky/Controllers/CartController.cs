@@ -50,7 +50,15 @@ namespace Rocky.Controllers
             }
 
             List<int> prodInCart = shoppingCartList.Select(i => i.ProductId).ToList();
-            IEnumerable<Product> prodList = _prodRepo.GetAll(u => prodInCart.Contains(u.Id));
+            IEnumerable<Product> prodListTemp = _prodRepo.GetAll(u => prodInCart.Contains(u.Id));
+            IList<Product> prodList = new List<Product>();
+
+            foreach (var cartObj in shoppingCartList)
+            {
+                Product prodTemp = prodListTemp.FirstOrDefault(u => u.Id == cartObj.ProductId);
+                prodTemp.TempSqFt = cartObj.SqFt;
+                prodList.Add(prodTemp);
+            }
 
             return View(prodList);
         }
@@ -58,8 +66,16 @@ namespace Rocky.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ActionName("Index")]
-        public IActionResult IndexPost()
+        public IActionResult IndexPost(IEnumerable<Product> ProdList)
         {
+            List<ShoppingCart> shoppingCartList = new List<ShoppingCart>();
+
+            foreach (Product prod in ProdList)
+            {
+                shoppingCartList.Add(new ShoppingCart { ProductId = prod.Id, SqFt = prod.TempSqFt });
+            }
+
+            HttpContext.Session.Set(WC.SessionCart, shoppingCartList);
 
             return RedirectToAction(nameof(Summary));
         }
@@ -150,6 +166,8 @@ namespace Rocky.Controllers
             }
             _inqDRepo.Save();
 
+            TempData[WC.Success] = "Inquiry submitted successfully";
+
             return RedirectToAction(nameof(InquiryConfirmation));
         }
 
@@ -174,6 +192,22 @@ namespace Rocky.Controllers
             }
 
             shoppingCartList.Remove(shoppingCartList.FirstOrDefault(u => u.ProductId == id));
+
+            HttpContext.Session.Set(WC.SessionCart, shoppingCartList);
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult UpdateCart(IEnumerable<Product> ProdList)
+        {
+            List<ShoppingCart> shoppingCartList = new List<ShoppingCart>();
+
+            foreach (Product prod in ProdList)
+            {
+                shoppingCartList.Add(new ShoppingCart { ProductId = prod.Id, SqFt = prod.TempSqFt });
+            }
 
             HttpContext.Session.Set(WC.SessionCart, shoppingCartList);
 
