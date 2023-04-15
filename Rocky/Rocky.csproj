@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Braintree" Version="5.17.0" />
     <PackageReference Include="Mailjet.Api" Version="3.0.0" />
     <PackageReference Include="MailKit" Version="3.6.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.14" />

@@ -5,6 +5,8 @@ using Rocky_DataAccess;
 using Rocky_DataAccess.Repostitory;
 using Rocky_DataAccess.Repostitory.IRepository;
 using Rocky_Utility;
+using Rocky_Utility.BrainTree;
+using System.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,11 +31,16 @@ builder.Services.AddSession(Options =>
     Options.Cookie.IsEssential = true;
 });
 
+builder.Services.Configure<BrainTreeSettings>(builder.Configuration.GetSection("BrainTree"));
+builder.Services.AddSingleton<IBrainTreeGate, BrainTreeGate>();
+
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IApplicationTypeRepository, ApplicationTypeRepository>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IInquiryHeaderRepository, InquiryHeaderRepository>();
 builder.Services.AddScoped<IInquiryDetailRepository, InquiryDetailRepository>();
+builder.Services.AddScoped<IOrderHeaderRepository, OrderHeaderRepository>();
+builder.Services.AddScoped<IOrderDetailRepository, OrderDetailRepository>();
 builder.Services.AddScoped<IApplicationUserRepository, ApplicationUserRepository>();
 
 var app = builder.Build();

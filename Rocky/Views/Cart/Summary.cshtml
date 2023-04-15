@@ -5,7 +5,7 @@
     ViewData["Title"] = "Summary";
 }
 
-<form method="post">
+<form method="post" id="payment-form">
     <br />
     <div class="backgroundWhiteBorder">
         <div class="container">
@@ -112,6 +112,8 @@
                                         {
                                             <input type="hidden" asp-for="@Model.ProductList[i].Id" />
                                             <input type="hidden" asp-for="@Model.ProductList[i].Name" />
+                                            <input type="hidden" asp-for="@Model.ProductList[i].Price" />
+                                            <input type="hidden" asp-for="@Model.ProductList[i].TempSqFt" />
 
                                             <li class="list-group-item d-flex justify-content-between">
                                                 <div>
@@ -147,6 +149,17 @@
 
                                     </ul>
                                 </div>
+
+                                @if (User.IsInRole(Rocky_Utility.WC.AdminRole)) 
+                                {
+                                    <div class="col-12">
+                                        <div class="container">
+                                            <div id="dropin-container"></div>
+
+                                            <input id="nonce" name="payment_method_nonce" type="hidden" />
+                                        </div>
+                                    </div>
+                                }
                             </div>
                         </div>
                     </div>
@@ -173,5 +186,27 @@
 
 @section Scripts{
     <partial name="_ValidationScriptsPartial" />
+
+    <script src="https://js.braintreegateway.com/web/dropin/1.36.1/js/dropin.min.js"></script>
+    <script>
+        
+        var client_token = "@ViewBag.ClientToken";
+
+        var form = document.querySelector("#payment-form");
+
+        braintree.dropin.create({
+            authorization: client_token,
+            container: "#dropin-container"
+        }, function (createErr, instance) {
+            form.addEventListener("submit", function () {
+                event.preventDefault();
+
+                instance.requestPaymentMethod(function (err, payload) {
+                    document.querySelector("#nonce").value = payload.nonce;
+                    form.submit();
+                });
+            });
+        });
+    </script>
 }
 
