@@ -43,6 +43,12 @@ builder.Services.AddScoped<IOrderHeaderRepository, OrderHeaderRepository>();
 builder.Services.AddScoped<IOrderDetailRepository, OrderDetailRepository>();
 builder.Services.AddScoped<IApplicationUserRepository, ApplicationUserRepository>();
 
+builder.Services.AddAuthentication().AddFacebook(Options =>
+{
+    Options.AppId = "669631214932358";
+    Options.AppSecret = "5ca5e95646c77a561a60a573d6d7e3a5";
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
