@@ -84,6 +84,10 @@
                                     <li>
                                         <a class="nav-link text-dark" asp-area="" asp-controller="Inquiry" asp-action="Index">Inquiry</a>
                                     </li>
+
+                                    <li>
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="Order" asp-action="Index">Order</a>
+                                    </li>
                                 </ul>
                             </li>
                         }
@@ -150,5 +154,7 @@
     <script src="~/lib/toastr/toastr.min.js"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
+
+    <ejs-scripts></ejs-scripts>
 </body>
 </html>
