@@ -4,7 +4,7 @@ using Rocky_Models;
 
 namespace Rocky_DataAccess
 {
-    public class ApplicationDbContext : IdentityDbContext // Этот класс можно назвать как угодно, но в конце дописать DbContext. Чтобы сделать класс действительно DbContext, его нужно унаследовать от класса DbContext через :
+    public class ApplicationDbContext : IdentityDbContext 
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) // ctor + Tab + Tab = Constructor
         {

@@ -6,7 +6,7 @@
 }
 
 
-<form method="post"> @* Для работы с изображением нужно прописать enctype="multipart/form-data" *@
+<form method="post"> 
     
     <input asp-for="Id" hidden />
 
@@ -83,7 +83,6 @@
                 </div>
             </div>
             <div class="col-4">
-                @* Keep this empty *@
                 @if (Model.Id != 0) {
                     <img src="@WC.ImagePath@Model.Image" width="100%" style="border-radius: 5px; border: 1px solid #bbb;" />
                 }
@@ -99,4 +98,12 @@
         <partial name="_ValidationScriptsPartial" />
     }
 
+    <script>
+        $(document).ready(function () {
+            $('.summernote').summernote({
+                height: 250
+            });
+        });
+
+    </script>
 }

@@ -5,6 +5,41 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<form method="get">
+    <div class="container p-4 my-3">
+        <h2 class="text-info">Orders Management</h2>
+        <div class="border bg-white p-3" style="border-radius:15px;">
+            <div class="row">
+                <div class="col-12">
+                    <div class="row" style="padding-top:10px">
+                        <div class="col-4">
+                            @Html.Editor("searchName", new { htmlAttributes = new { @class = "form-control", @placeholder = "Name..." } })
+                        </div>
+                        <div class="col-4">
+                            @Html.Editor("searchEmail", new { htmlAttributes = new { @class = "form-control", @placeholder = "Email..." } })
+                        </div>
+                        <div class="col-4">
+                            @Html.Editor("searchPhone", new { htmlAttributes = new { @class = "form-control", @placeholder = "Phone..." } })
+                        </div>
+                    </div>
+                    <div class="row pt-1">
+                        <div class="col-4">
+                            @Html.DropDownListFor(u=>u.Status,Model.StatusList,"--Order Status--",new {@class="form-select" })
+                        </div>
+                        <div class="offset-4 col-4">
+                            <button type="submit" class="h-100 btn btn-info form-control">
+                                <i class="fas fa-search"></i>Search
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<hr />
+
 <div>
     <ejs-grid id="Grid" dataSource="@Model.OrderHList" allowFiltering="true" allowSorting="true" allowPaging="true">
         <e-grid-filtersettings type="Menu"></e-grid-filtersettings>
@@ -16,7 +51,7 @@
             <e-grid-column field="PhoneNumber" headerText="Phone" textAlign="Right"></e-grid-column>
             <e-grid-column field="OrderStatus" headerText="Status" textAlign="Right"></e-grid-column>
             <e-grid-column field="OrderDate" headerText="Order Date" customFormat="@(new { type = "date", format = "dd/MM/yyyy" })" textAlign="Right"></e-grid-column>
-            <e-grid-column field="Id" headerText="" width="70" template="<a rel = 'nofollow' href = 'Order/Details/${Id}' class = 'btn btn-primary'> <i class='fas fa-list'></i> </a>"></e-grid-column>
+            <e-grid-column field="Id" headerText="" width="70" template="<a rel ='nofollow' href = 'Order/Details/${Id}' class ='btn btn-primary'> <i class='fas fa-list'></i> </a>"></e-grid-column>
         </e-grid-columns>
     </ejs-grid>
 </div>

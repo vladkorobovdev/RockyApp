@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using Rocky_DataAccess;
+using Rocky_DataAccess.Initializer;
 using Rocky_DataAccess.Repostitory;
 using Rocky_DataAccess.Repostitory.IRepository;
 using Rocky_Utility;
@@ -42,6 +43,7 @@ builder.Services.AddScoped<IInquiryDetailRepository, InquiryDetailRepository>();
 builder.Services.AddScoped<IOrderHeaderRepository, OrderHeaderRepository>();
 builder.Services.AddScoped<IOrderDetailRepository, OrderDetailRepository>();
 builder.Services.AddScoped<IApplicationUserRepository, ApplicationUserRepository>();
+builder.Services.AddScoped<IDbInitializer, DbInitializer>();
 
 builder.Services.AddAuthentication().AddFacebook(Options =>
 {
@@ -50,6 +52,12 @@ builder.Services.AddAuthentication().AddFacebook(Options =>
 });
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var dbInitializer = scope.ServiceProvider.GetRequiredService<IDbInitializer>();
+    dbInitializer.Initialize();
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

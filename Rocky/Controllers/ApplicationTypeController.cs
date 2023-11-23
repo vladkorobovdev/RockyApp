@@ -18,7 +18,7 @@ namespace Rocky.Controllers
             _appTypeRepo = appTypeRepo;
         }
 
-        public IActionResult Index() // Чтобы добавить View для ApplicationType, нужно нажать ПКМ по action-методу Index в этом контроллере и затем добавить View (НЕ ПУСТОЙ!!! - Razor View)
+        public IActionResult Index() 
         {
             IEnumerable<ApplicationType> objList = _appTypeRepo.GetAll();
             return View(objList);
