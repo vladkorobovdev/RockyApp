@@ -21,7 +21,7 @@
     },
     "resourceName": {
       "type": "string",
-      "defaultValue": "RockyCloud",
+      "defaultValue": "RockyAzure",
       "metadata": {
         "description": "Name of the main resource to be created by this template."
       }

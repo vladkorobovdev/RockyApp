@@ -35,7 +35,7 @@ namespace Rocky_Models
         public virtual ApplicationType ApplicationType { get; set; }
 
         [NotMapped] // Показывает БД, что это свойство не нужно сохранять в базу данных, оно временное и нужно для хранения в текушей сессии
-        [Range(1, 10000)]
+        [Range(1, 10000, ErrorMessage = "Sqft must be greater than 0.")]
         public int TempSqFt { get; set; }
     }
 }
